@@ -1,9 +1,10 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import styled from "styled-components";
 import "./App.css";
 import PrimaryButton from "./components/Button";
 import Input from "./components/Input";
 import { ModalForButtons } from "./components/Modal";
+import Simulation from "./Simulation";
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,26 +25,38 @@ const Button = styled(PrimaryButton)`
 
 const H1 = styled.h1``;
 const App: React.FC = () => {
+  const [players, setPlayers] = React.useState(4);
+  const [minValue, setMinValue] = React.useState(0);
+  const [maxValue, setMaxValue] = React.useState(6);
+  const [showSimulation, setShowSimulation] = React.useState(true);
+
   return (
     <>
-      <H1>MORO</H1>
-      <Wrapper>
-        <ModalForButtons>
-          <Label>Amount of players</Label>
-          <InputSpacing />
-          <Label>Min value</Label>
-          <InputSpacing />
-          <Label>Max value</Label>
-          <InputSpacing />
-          <Button onClick={() => console.log("terve")} size={"large"}>
-            Go
-          </Button>
-        </ModalForButtons>
-      </Wrapper>
+      {showSimulation ? (
+        <Simulation minValue={minValue} maxValue={maxValue} players={players} />
+      ) : (
+        <Wrapper>
+          <ModalForButtons>
+            <Label>Amount of players</Label>
+            <InputSpacing
+              onChange={event => setPlayers(parseInt(event.target.value))}
+            />
+            <Label>Min value</Label>
+            <InputSpacing
+              onChange={event => setMinValue(parseInt(event.target.value))}
+            />
+            <Label>Max value</Label>
+            <InputSpacing
+              onChange={event => setMaxValue(parseInt(event.target.value))}
+            />
+            <Button onClick={() => setShowSimulation(true)} size={"large"}>
+              Go
+            </Button>
+          </ModalForButtons>
+        </Wrapper>
+      )}
     </>
   );
 };
-
-const Form = styled.form``;
 
 export default App;

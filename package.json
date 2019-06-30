@@ -7,6 +7,7 @@
     "@types/node": "12.0.10",
     "@types/react": "16.8.22",
     "@types/react-dom": "16.8.4",
+    "lodash": "^4.17.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
@@ -37,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.135",
     "@types/styled-components": "^4.1.16",
     "react-docgen-typescript": "^1.12.5",
     "react-styleguidist": "^9.1.11"

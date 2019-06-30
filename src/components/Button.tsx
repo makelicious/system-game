@@ -1,13 +1,9 @@
 import styled from "styled-components";
 
 type Size = "large" | "medium" | "small";
-interface ButtonProps {
+export interface ButtonProps {
   size: Size;
 }
-
-const Button = styled.button<ButtonProps>`
-  border: none;
-`;
 
 export const PrimaryButton = styled.button<ButtonProps>`
   color: #fff;
