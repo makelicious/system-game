@@ -17,6 +17,9 @@ export const PrimaryButton = styled.button<ButtonProps>`
   &:hover {
     background-color: #1b5a75;
   }
+  &:disabled {
+    background-color: #50514f;
+  }
 `;
 
 export const SecondaryButton = styled.button<ButtonProps>``;

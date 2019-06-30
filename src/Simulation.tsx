@@ -31,6 +31,11 @@ const PlayerButton = styled(PrimaryButton)<PlayerButtonProps>`
 
 const Simulation: React.FC<SimulationProps> = props => {
   const { players } = props;
+
+  const [currentPlayer, setCurrentPlayer] = React.useState(0);
+  const [currentRound, setCurrentRound] = React.useState(1);
+  const [results, setResults] = React.useState([]);
+
   const playerAmount = _.range(players);
   const playerObjects = playerAmount.map(p => ({
     left: distanceFromLeft(players, p),
@@ -39,19 +44,38 @@ const Simulation: React.FC<SimulationProps> = props => {
   }));
 
   return (
-    <Wrapper>
-      {playerObjects.map(player => (
-        <PlayerButton
-          key={player.id}
-          size="large"
-          top={player.top}
-          left={player.left}
-        >
-          {player.id}
-        </PlayerButton>
-      ))}
-    </Wrapper>
+    <>
+      <p>{`Current round: ${currentRound}`}</p>
+      <p>{`Current round: ${currentPlayer}`}</p>
+      <Leaderboard results={results} />
+      <Wrapper>
+        {playerObjects.map(player => (
+          <PlayerButton
+            disabled={player.id !== currentPlayer}
+            key={player.id}
+            size="large"
+            top={player.top}
+            left={player.left}
+          >
+            {player.id}
+          </PlayerButton>
+        ))}
+      </Wrapper>
+    </>
   );
+};
+
+interface Results {
+  id: number;
+  points: number;
+}
+
+interface LeaderboardProps {
+  results: Results[];
+}
+
+const Leaderboard: React.FC<LeaderboardProps> = props => {
+  return <div>moro</div>;
 };
 
 function distanceFromLeft(players: number, order: number) {
